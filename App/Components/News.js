@@ -9,9 +9,24 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types' //consider using this!
-import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking } from 'react-native'
+import { StyleSheet, SafeAreaView, View, FlatList, Text, Linking, TouchableOpacity } from 'react-native'
 import { material } from 'react-native-typography' //consider using this!
 import { Metrics, Colors } from '../Themes'
+
+
+const Article = props => {
+  const {title, summary, author, date, url} = props;
+  return (
+    <View style = {styles.article}>
+      <TouchableOpacity onPress = {() => Linking.openURL(url)}>
+          <Text style = {material.title} > {title} </Text>
+          <Text style = {material.body1} > {summary}</Text>
+          <Text style = {material.button} > {author} </Text>
+          <Text style = {material.caption} > {date}</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 export default class News extends Component {
   static defaultProps = { articles: [] }
@@ -26,9 +41,19 @@ export default class News extends Component {
     const {articles} = this.props;
 
     return (
-      <View style={styles.container}>
-        {/*Some FlatList or SectionList*/}
-      </View>
+      <FlatList
+        data={articles}
+        renderItem={({ item }) => (
+          <Article
+            title={item.title}
+            summary={item.snippet}
+            author={item.byline}
+            date={item.date}
+            url={item.url}
+          />
+        )}
+        keyExtractor={item => item.url}
+      />
     );
   }
 }
@@ -36,6 +61,9 @@ export default class News extends Component {
 
 const styles = StyleSheet.create({
   container: {
+  },
 
+  article: {
+    margin: 10,
   },
 });
