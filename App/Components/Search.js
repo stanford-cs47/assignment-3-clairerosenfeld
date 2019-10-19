@@ -1,10 +1,10 @@
 /*
 *
 * Assignment 3
-* Starter Files
+* Claire Rosenfeld
 *
 * CS47
-* Oct, 2018
+* Oct, 2019
 */
 
 import React, { Component } from 'react'
@@ -35,9 +35,7 @@ export default class Search extends Component {
 				<TextInput 
 					placeholder = 'Search for News'
 					onChangeText = {this.changeText}
-				//	onEndEditing = {Keyboard.dismiss()}
 				/>
-
 				<TouchableOpacity
 					onPress = {text => this.reloadArticles(text)}>
 					<FontAwesome
@@ -52,7 +50,6 @@ export default class Search extends Component {
 	}
 }
 
-
 const styles = StyleSheet.create({
 	searchbar: {
 		flex: .5,
@@ -64,5 +61,4 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		width: Dimensions.get('window').width * .9,
 	},
-
 });
