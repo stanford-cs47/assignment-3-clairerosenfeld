@@ -1,10 +1,10 @@
 /*
 *
 * Assignment 3
-* Starter Files
+* Claire Rosenfeld
 *
 * CS47
-* Oct, 2018
+* Oct, 2019
 */
 
 import React, { Component } from 'react'
@@ -14,8 +14,8 @@ import { material } from 'react-native-typography' //consider using this!
 import { Metrics, Colors } from '../Themes'
 
 
-const Article = props => {
-  const {title, summary, author, date, url} = props;
+//Article = functional component
+const Article = ({title, summary, author, date, url}) => {
   return (
     <View style = {styles.article}>
       <TouchableOpacity onPress = {() => Linking.openURL(url)}>
@@ -35,11 +35,8 @@ export default class News extends Component {
     articles: PropTypes.array
   }
 
-  //you can change the props above to whatever you want/need.
-
   render () {
     const {articles} = this.props;
-
     return (
       <FlatList
         data={articles}
@@ -60,9 +57,6 @@ export default class News extends Component {
 
 
 const styles = StyleSheet.create({
-  container: {
-  },
-
   article: {
     margin: 10,
   },

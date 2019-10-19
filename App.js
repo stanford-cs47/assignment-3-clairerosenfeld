@@ -1,10 +1,10 @@
 /*
 *
 * Assignment 3
-* Starter Files
+* Claire Rosenfeld
 *
 * CS47
-* Oct, 2018
+* Oct, 2019
 */
 
 import React from 'react';
@@ -26,15 +26,12 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    //uncomment this to run an API query!
     this.loadArticles();
   }
 
   searchForTerm = (newTerm) =>{
     this.setState({searchText: newTerm});
     this.loadArticles(newTerm, '');
-
-
   }
 
   renderLoadingIcon(){
@@ -49,7 +46,6 @@ export default class App extends React.Component {
   }
 
   async loadArticles(searchTerm = '', category = '') {
-
     this.setState({articles:[], loading: true});
     var resultArticles = [];
     if (category === '') {
@@ -59,36 +55,30 @@ export default class App extends React.Component {
     }
     console.log(resultArticles);
     console.log(resultArticles.length);
-
     this.setState({loading: false, articles: resultArticles})
   }
 
 
   render() {
     const {articles, loading} = this.state;
-
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <SafeAreaView style = {styles.container}>
           <Image style = {styles.nytlogo} 
             source = {require('./App/Images/nyt.png')} 
           />
-
           <Search 
             onChange = {this.searchForTerm}
           />
-
           {this.renderLoadingIcon()}
-
           <View style = {styles.news}>
             <News 
               articles = {articles}
             />
           </View>
-
         </SafeAreaView>
       </TouchableWithoutFeedback>
-);
+    );
   }
 }
 
@@ -132,9 +122,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'flex-end',
- 
   }
-
-
 
 });
